@@ -39,7 +39,6 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-e user requests
 app.use(flash());
 
 app.use((req, res, next) => {

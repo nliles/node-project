@@ -18,6 +18,11 @@ router.post('/register',
 );
 
 router.post('/account/forgot', authController.forgotPassword);
-router.get('/account/forgot/:token', authController.resetPassword);
+router.get('/account/reset/:token', authController.resetPassword);
+router.post('/account/reset/:token', 
+	authController.confirmedPasswords,
+	authController.updatePassword
+);
+
 
 module.exports = router;
