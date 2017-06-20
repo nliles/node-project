@@ -28,9 +28,24 @@ exports.forgotPassword = async (req, res, next) => {
 	user.resetPasswordToken = crypto.randomBytes(15).toString('hex');
 	user.resetPasswordExpires = Date.now() + 3600000;
 	await user.save();
+	const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+	mail.send({
+
+	});
 
 	req.flash('success', 'You have been emailed a password reset link');
 	res.redirect('/login');
+}
 
+exports.resetPassword = async (req, res) => {
+	const user = await User.findOne({ 
+		resetPasswordToken: req.params.token,
+		resetPasswordExpires: { $gt: Date.now() }
+	 });
 
+	if(!user) {
+		req.flash('error', 'Password token has expired or is invalid.')
+		return res.redirect('/login');
+	}
+	res.render('reset');
 }
