@@ -1,20 +1,32 @@
 doctype html
 html
   head
-    link(type='text/css', rel='stylesheet', href='/site.css')   
-    title Hello
+    title= "My Project"
+    link(rel='stylesheet', href='/dist/style.css')
+    script(src="application.js")
+    script(src="bower_components/jquery/dist/jquery.min.js")
+    script(src="bower_components/jquery-ui/jquery-ui.min.js")
+    link(href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet")
   body
-    ul
-      li
-        a(href='/') Home  
-    if user
-      li
-        a(href='/logout') Logout  
-    else
-      li
-        a(href='/login') Login  
-      li
-        a(href='/register') Register  
+    block header
+      header.top
+      nav.nav
+        ul.list
+          .nav__section.nav__section--user
+            if user
+              li.nav__item.border
+                a(href="/account")=`Hi, ${user.firstname} →`
+              li.nav__item
+                a(href='/logout') Logout  
+            else
+              li.nav__item.border
+                a.login(href='/login') Log In 
+              li.nav__item
+                a(href='/register') Sign Up 
+          .nav__section.nav__section--pages
+              li.nav__item.title
+                a.title(href="/") BLOG VOYAGE
 
     block messages
       if locals.flashes
@@ -28,3 +40,5 @@ html
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
     .content
       block content
+
+
