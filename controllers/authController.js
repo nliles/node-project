@@ -28,9 +28,15 @@ exports.forgotPassword = async (req, res) => {
 	user.resetPasswordExpires = Date.now() + 3600000;
 	await user.save();
 	const resetURL = `http://${req.headers.host}/account/reset/${user.resetPasswordToken}`;
+	await mail.send({
+		user,
+		subject: 'Reset Password',
+		resetURL,
+		filename: 'password-reset'
+	});
 
 	req.flash('success', 'Password reset link emailed.')
-	res.redirect(`/account/reset/${user.resetPasswordToken}`);
+	res.redirect('/login');
 }
 
 exports.resetPassword = async (req, res) => {
@@ -71,13 +77,13 @@ exports.updatePassword = async (req, res) => {
 		return res.redirect('/login');
 	}
 
-	const setPassword = promisify(user.setPassword, user);
+	const setPassword = await promisify(user.setPassword, user);
 	await setPassword(req.body.password);
 	user.resetPasswordToken = undefined;
 	user.resetPasswordExpires = undefined;
 	const updatedUser = await user.save();
 	await req.login(updatedUser);
-	req.flash('success', 'successfully updated password');
+	req.flash('success', 'You have successfully reset your password.');
 	res.redirect('/');
 }
 

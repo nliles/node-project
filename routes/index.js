@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const authController = require('../controllers/authController');
+const tripController = require('../controllers/tripController');
 const { catchErrors } = require('../handlers/errorHandlers');
 
 router.get('/login', userController.login);
@@ -22,6 +23,15 @@ router.get('/account/reset/:token', authController.resetPassword);
 router.post('/account/reset/:token', 
 	authController.confirmedPasswords,
 	authController.updatePassword
+);
+
+router.get('/account', userController.account);
+
+router.get('/trip', tripController.addTrip);
+router.post('/trip', 
+	tripController.uploadPhoto,
+	tripController.resizePhoto,
+	tripController.createTrip
 );
 
 

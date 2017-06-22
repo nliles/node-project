@@ -4,13 +4,25 @@ include mixins/_loginForm
 block content
 	.inner
 		form.form(action="/register" method="POST")
-			h2 Register
-			label(for="name") Name
-			input(type="text" name="name" required)
+			h2 Sign Up
+			label(for="name") First Name
+			input(type="text" name="firstname" required)
+			br
+			br
+			label(for="name") Last Name
+			input(type="text" name="lastname" required)
+			br
+			br
 			label(for="email") Email
 			input(type="email" name="email" required)
+			br
+			br
 			label(for="password") Password
 			input(type="password" name="password")
+			br
+			br
 			label(for="password-confirm") Confirm Password
 			input(type="password" name="password-confirm")
+			br 
+			br
 			input.button(type="submit" value="Sign Up")
