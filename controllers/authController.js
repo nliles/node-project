@@ -87,6 +87,15 @@ exports.updatePassword = async (req, res) => {
 	res.redirect('/');
 }
 
+exports.isLoggedIn = (req, res, next) => {
+	if(req.isAuthenticated()) {
+		next();
+		return;
+	}
+	req.flash('error', 'Must be logged in to do that');
+	res.redirect('/login');
+};
+
 
 
 

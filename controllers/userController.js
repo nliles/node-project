@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Trip = mongoose.model('Trip');
 const promisify = require('es6-promisify');
 
 exports.login = (req, res) => {
@@ -44,9 +45,11 @@ exports.register = async (req, res, next) => {
 }
 
 exports.account = (req, res) => {
-	const user = User.findOne({ email: req.body.email });
-	res.render('account');
+  const user = User.findOne({ email: req.body.email });
+  const trips = Trip.find({ author: user._id });
+  res.render('account');
 }
+
 
 
 
