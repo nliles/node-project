@@ -25,14 +25,15 @@ router.post('/account/reset/:token',
 	authController.updatePassword
 );
 
-router.get('/account', userController.account);
+router.get('/account', authController.isLoggedIn, userController.account);
 
 router.get('/trip', tripController.addTrip);
 router.post('/trip', 
 	tripController.uploadPhoto,
-	tripController.resizePhoto,
-	tripController.createTrip
+	catchErrors(tripController.resizePhoto),
+	catchErrors(tripController.createTrip)
 );
+
 
 
 module.exports = router;

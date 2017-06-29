@@ -3,9 +3,6 @@ html
   head
     title= "My Project"
     link(rel='stylesheet', href='/dist/style.css')
-    script(src="application.js")
-    script(src="bower_components/jquery/dist/jquery.min.js")
-    script(src="bower_components/jquery-ui/jquery-ui.min.js")
     link(href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet")
     link(href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet")
   body
@@ -40,5 +37,9 @@ html
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
     .content
       block content
+
+    block scripts
+      script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyD2PXpY9m7cUzNbyLzenp9w2Q436QKvYzI&libraries=places`)
+      script(src="/dist/App.bundle.js")
 
 
