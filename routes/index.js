@@ -27,7 +27,10 @@ router.post('/account/reset/:token',
 	authController.updatePassword
 );
 
-router.get('/account', authController.isLoggedIn, userController.account);
+router.get('/userpage', catchErrors(userController.userpage));
+
+router.get('/account', authController.isLoggedIn, userController.editAccount);
+// router.post('/account', userController.updateAccount);
 
 router.get('/trip', tripController.addTrip);
 router.post('/trip', 
@@ -35,7 +38,6 @@ router.post('/trip',
 	catchErrors(tripController.resizePhoto),
 	catchErrors(tripController.createTrip)
 );
-
 
 
 module.exports = router;

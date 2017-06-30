@@ -15,8 +15,8 @@ html
                 ul.cool
                   li.nav__item: a.nav__link(href="/account")= `Hi, ${user.firstname} →`
                     div.dropdown 
-                      a.nav__link(href="/account") Account
-                      a.nav__link(href="/logout") Edit Account
+                      a.nav__link(href="/userpage") Account
+                      a.nav__link(href="/account") Edit Account
                       a.nav__link(href="/logout") Logout
             else
               li.nav__item: a.nav__link.border(href="/register") Sign Up
