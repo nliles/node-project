@@ -16,6 +16,7 @@ const userSchema = new Schema({
 		required: 'Please supply a name',
 		trim: true
 	},
+	photo: String,
 	email: {
 		type: String,
 		unique: true,
@@ -27,9 +28,6 @@ const userSchema = new Schema({
     resetPasswordToken: String,
     resetPasswordExpires: Date
 });
-
-
-
 
 userSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
 userSchema.plugin(mongodbErrorHandler);

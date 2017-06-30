@@ -13,6 +13,8 @@ router.post('/login', authController.login);
 router.get('/register', userController.registerForm);
 
 router.post('/register',
+  userController.uploadPhoto,
+  userController.resizePhoto,
   userController.validateRegister,
   userController.register,
   authController.login

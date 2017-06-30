@@ -8,14 +8,12 @@ const uuid = require('uuid');
 
 const multerOptions = {
 	storage: multer.memoryStorage(),
-	// fileFilter(req, file, next) {
-	// 	const isPhoto = file.mimetype.startsWith('image/');
-	// 	if (isPhoto) {
-	// 		next(null, true);
-	// 	} else {
-	// 		next({message: 'That filetype is not allowed.'}, false);
-	// 	}
-	// }
+	fileFilter(req, file, next) {
+		for (var i = 0; i < req.files.length; i++)  {	
+			const isPhoto = file.mimetype.startsWith('image/');
+			isPhoto ? next(null, true) : next({message: 'That filetype is not allowed.'}, false)
+		}
+	}
 }
 
 exports.addTrip = (req, res) => {
@@ -26,14 +24,12 @@ exports.uploadPhoto = multer(multerOptions).array('photo', 20);
 
 exports.resizePhoto = async (req, res, next) => {
 	if (!req.files) {
-	    next(); 
-	    return;
+	    return next(); 
 	}
 	for (var i = 0; i < req.files.length; i++)  {
 	const extension = req.files[i].mimetype.split('/')[1];
 	req.body.photo = `${uuid.v4()}.${extension}`;
 	const photo = await jimp.read(req.files[i].buffer);
-
 	await photo.resize(800, jimp.AUTO);
 	await photo.write(`./public/uploads/${req.body.photo}`);	
 	}
