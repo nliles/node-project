@@ -28,9 +28,7 @@ const tripSchema = new Schema({
 	      required: 'You must supply an address'
 	    }
 	  },
-	photo: [{
-		type: String
-	}],
+	photo: [String],
 	author: {
 	    type: mongoose.Schema.ObjectId,
 	    ref: 'User',

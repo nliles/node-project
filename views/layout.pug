@@ -1,29 +1,36 @@
 doctype html
 html
   head
-    title= "My Project"
+    title= `${title} | ${h.siteName}`
     link(rel='stylesheet', href='/dist/style.css')
-    link(href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet")
-    link(href="https://fonts.googleapis.com/css?family=Montserrat:600" rel="stylesheet")
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
   body
     block header
       header.top
-      nav.nav
-        ul.list
+        nav.nav
+          div.dropdownBackground
           .nav__section.nav__section--user
             if user
-              li.nav__item.border
-                a(href="/account")=`Hi, ${user.firstname} →`
-              li.nav__item
-                a(href='/logout') Logout  
+                ul.cool
+                  li.nav__item: a.nav__link(href="/account")= `Hi, ${user.firstname} →`
+                    div.dropdown 
+                      a.nav__link(href="/account") Account
+                      a.nav__link(href="/logout") Edit Account
+                      a.nav__link(href="/logout") Logout
             else
-              li.nav__item.border
-                a.login(href='/login') Log In 
-              li.nav__item
-                a(href='/register') Sign Up 
+              li.nav__item: a.nav__link.border(href="/register") Sign Up
+              li.nav__item: a.nav__link(href="/login") Log In
           .nav__section.nav__section--pages
-              li.nav__item.title
-                a.title(href="/") BLOG VOYAGE
+            li.nav__item
+              a.nav__link.nav__link--title(href="/") BLOG VOYAGE
+
+          .nav__section.nav__section--search
+            .search
+              input.search__input(type="text" placeholder="Search" name="search")
+              .search__results
+                //- != h.icon('search')
+
 
     block messages
       if locals.flashes

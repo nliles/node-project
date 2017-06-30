@@ -2,6 +2,32 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Trip = mongoose.model('Trip');
 const promisify = require('es6-promisify');
+const multer = require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
+const multerOptions = {
+	storage: multer.memoryStorage(),
+	fileFilter(req, file, next) {	
+			const isPhoto = file.mimetype.startsWith('image/');
+			isPhoto ? next(null, true) : next({message: 'That filetype is not allowed.'}, false)
+	}
+}
+
+exports.uploadPhoto = multer(multerOptions).single('photo');
+
+exports.resizePhoto = async (req, res, next) => {
+  if (!req.file) {
+    next(); 
+    return;
+  }
+  const extension = req.file.mimetype.split('/')[1];
+  req.body.photo = `${uuid.v4()}.${extension}`;
+  const photo = await jimp.read(req.file.buffer);
+  await photo.resize(800, jimp.AUTO);
+  await photo.write(`./public/uploads/${req.body.photo}`);
+  next();
+};
 
 exports.login = (req, res) => {
 	res.render('login');
@@ -38,7 +64,7 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, firstname: req.body.firstname, lastname: req.body.lastname });
+  const user = new User({ email: req.body.email, firstname: req.body.firstname, lastname: req.body.lastname, photo: req.body.photo });
   const register = promisify(User.register, User);
   await register(user, req.body.password);
   next();
@@ -46,9 +72,11 @@ exports.register = async (req, res, next) => {
 
 exports.account = (req, res) => {
   const user = User.findOne({ email: req.body.email });
-  const trips = Trip.find({ author: user._id });
   res.render('account');
 }
+
+
+
 
 
 

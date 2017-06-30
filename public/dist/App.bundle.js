@@ -89,6 +89,8 @@ function autocomplete(input, latInput, lngInput) {
 
 /* harmony default export */ __webpack_exports__["a"] = autocomplete;
 
+
+
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -125,6 +127,8 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_bling__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_autocomplete__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dropdown__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__modules_dropdown__);
 // import '../sass/style.scss';
 
 
@@ -134,6 +138,42 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_autocomplete__["a" /* default */])( __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#address'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#lat'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#lng') );
 
 
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+const links = document.querySelectorAll('.cool > li');
+const background = document.querySelector('.dropdownBackground');
+const nav = document.querySelector('nav');
+
+function handleEnter() {
+  background.classList.add('open');
+  this.classList.add('trigger-enter')
+  setTimeout(() => {
+    this.classList.add('trigger-enter-active')
+  }, 150)
+  const dropdown = this.querySelector('.dropdown');
+  const dropdownCoords = dropdown.getBoundingClientRect();
+  const navCoords = nav.getBoundingClientRect();
+  const coords = {
+    width: dropdownCoords.width,
+    height: dropdownCoords.height,
+    left: dropdownCoords.left - navCoords.left,
+    top: dropdownCoords.top - navCoords.top
+  }
+  background.style.setProperty('width', `${coords.width}px`);
+  background.style.setProperty('height', `${coords.height}px`);
+  background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`); 
+}
+
+function handleExit() {
+  background.classList.remove('open');
+  this.classList.remove('trigger-enter', 'trigger-enter-active');
+}
+
+links.forEach(link => link.addEventListener('mouseenter', handleEnter));
+links.forEach(link => link.addEventListener('mouseleave', handleExit));
 
 /***/ })
 /******/ ]);

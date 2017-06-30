@@ -1,19 +1,31 @@
-const links = document.querySelectorAll('a');
-const highlight = document.createElement('span');
-highlight.classList.add('highlight');
-document.body.appendChild(highlight);
+const links = document.querySelectorAll('.cool > li');
+const background = document.querySelector('.dropdownBackground');
+const nav = document.querySelector('nav');
 
-function highlightLink() {
-  const l = this.getBoundingClientRect();
+function handleEnter() {
+  background.classList.add('open');
+  this.classList.add('trigger-enter')
+  setTimeout(() => {
+    this.classList.add('trigger-enter-active')
+  }, 150)
+  const dropdown = this.querySelector('.dropdown');
+  const dropdownCoords = dropdown.getBoundingClientRect();
+  const navCoords = nav.getBoundingClientRect();
   const coords = {
-    width: l.width,
-    height: l.height,
-    left: l.left + window.scrollX,
-    top: l.top + window.scrollY
+    width: dropdownCoords.width,
+    height: dropdownCoords.height,
+    left: dropdownCoords.left - navCoords.left,
+    top: dropdownCoords.top - navCoords.top
   }
-  highlight.style.width = `${coords.width}px`;
-  highlight.style.height = `${coords.height}px`;
-  highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+  background.style.setProperty('width', `${coords.width}px`);
+  background.style.setProperty('height', `${coords.height}px`);
+  background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`); 
 }
 
-links.forEach(link => link.addEventListener('mouseenter', highlightLink))
+function handleExit() {
+  background.classList.remove('open');
+  this.classList.remove('trigger-enter', 'trigger-enter-active');
+}
+
+links.forEach(link => link.addEventListener('mouseenter', handleEnter));
+links.forEach(link => link.addEventListener('mouseleave', handleExit));
