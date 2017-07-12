@@ -70,13 +70,13 @@ exports.register = async (req, res, next) => {
   next();
 }
 
-exports.userpage = (req, res) => {
-  const user = User.findOne({ email: req.body.email });
-  res.render('account', { title: "Your Page" });
+exports.userpage = async (req, res) => {
+  const trips = await Trip.find({ author: req.user._id });
+  res.render('account', {trips, title: `${req.user.firstname}'s Account`});
 }
 
 exports.editAccount = (req, res) => {
-  const user = User.findOne({ email: req.body.email })
+  const user = User.findOne({ email: req.body.email });
   res.render('editAccount', { title: "Edit" });
 }
 

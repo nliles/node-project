@@ -23,6 +23,7 @@ exports.addTrip = (req, res) => {
 exports.uploadPhoto = multer(multerOptions).array('photo', 20);
 
 exports.resizePhoto = async (req, res, next) => {
+	console.log(req.files)
 	if (!req.files) {
 	    return next(); 
 	}
@@ -36,12 +37,12 @@ exports.resizePhoto = async (req, res, next) => {
 	next();
 };
 
-exports.createTrip = async (req, res, next) => {
+exports.createTrip = async (req, res) => {
+	console.log(req.files)
 	req.body.author = req.user._id;
 	const trip = await (new Trip(req.body)).save();
-	new Photo()
 	req.flash('success', `Successfully Created ${trip.name}.`);
-	res.redirect('/account');
+	res.redirect(`/trip/${trip.slug}`);
 }
 
 exports.showTrips = async (req, res) => {

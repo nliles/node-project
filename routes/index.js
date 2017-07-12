@@ -29,23 +29,20 @@ router.post('/account/reset/:token',
 	authController.updatePassword
 );
 
-router.get('/userpage', catchErrors(userController.userpage));
+router.get('/userpage', authController.isLoggedIn, userController.userpage);
 
 router.get('/account', authController.isLoggedIn, userController.editAccount);
 router.post('/account', catchErrors(userController.updateAccount));
 
 router.get('/trip', tripController.addTrip);
-router.get('/trip/:slug', catchErrors(tripController.getTripBySlug));
 
 router.post('/trip', 
 	tripController.uploadPhoto,
-	catchErrors(tripController.resizePhoto),
-	catchErrors(tripController.createTrip)
+	tripController.resizePhoto,
+	tripController.createTrip
 );
 
-
-
-
+router.get('/trip/:slug', catchErrors(tripController.getTripBySlug));
 
 
 module.exports = router;
