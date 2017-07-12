@@ -30,11 +30,11 @@ exports.resizePhoto = async (req, res, next) => {
 };
 
 exports.login = (req, res) => {
-	res.render('login');
+	res.render('login', { title: 'Login'} );
 }
 
 exports.registerForm = (req, res) => {
-	res.render('register');
+	res.render('register', { title: 'Register'} );
 }
 
 exports.validateRegister = (req, res, next) => {
@@ -64,7 +64,7 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
-  const user = new User({ email: req.body.email, firstname: req.body.firstname, lastname: req.body.lastname, photo: req.body.photo });
+  const user = new User(req.body);
   const register = promisify(User.register, User);
   await register(user, req.body.password);
   next();
@@ -72,22 +72,23 @@ exports.register = async (req, res, next) => {
 
 exports.userpage = (req, res) => {
   const user = User.findOne({ email: req.body.email });
-  res.render('account');
+  res.render('account', { title: "Your Page" });
 }
 
 exports.editAccount = (req, res) => {
   const user = User.findOne({ email: req.body.email })
-  res.render('editAccount', { title: "Edit Your Account" });
+  res.render('editAccount', { title: "Edit" });
 }
 
 exports.updateAccount = async (req, res) => {
   const updates = {
-    name: req.body.name,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     email: req.body.email
   };
 
   const user = await User.findOneAndUpdate( 
-    {_id: req.user._id }, 
+    { _id: req.user._id }, 
     { $set: updates}, 
     { new: true, runValidators: true, context: 'query' }
     );

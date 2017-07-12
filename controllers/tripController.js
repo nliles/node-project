@@ -36,11 +36,24 @@ exports.resizePhoto = async (req, res, next) => {
 	next();
 };
 
-exports.createTrip = async (req, res) => {
+exports.createTrip = async (req, res, next) => {
 	req.body.author = req.user._id;
 	const trip = await (new Trip(req.body)).save();
+	new Photo()
 	req.flash('success', `Successfully Created ${trip.name}.`);
 	res.redirect('/account');
+}
+
+exports.showTrips = async (req, res) => {
+  const trips = await Trip.find();
+  res.render('trips', { trips });
+};
+
+exports.getTripBySlug = async (req, res, next) => {
+	console.log(req.params.slug)
+	const trip = await Trip.findOne({ slug: req.params.slug});
+	if (!trip) return next();
+	res.render('trip', { trip, title: trip.name });
 }
 
 
