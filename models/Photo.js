@@ -2,12 +2,12 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 mongoose.Promise = global.Promise;
 
-const photoSchema = new Photo({
-	path: {
+const photoSchema = new Schema({
+	photo: {
 		type: String,
-		required: 'Please supply a name',
+		required: 'Please supply a file',
 	}, 
-	Description: String,
+	// Description: String,
 	author: {
 	    type: mongoose.Schema.ObjectId,
 	    ref: 'User',
