@@ -1,7 +1,19 @@
 extends layout
 
 block content
-	.inner
-		h2= trip.name
-			p= trip.description
+  .inner
+    .single__hero
+      #slide_cont
+      img.single__image(src=`/uploads/${trip.photo[0]}`)
+
+      a.previous.round(href='#') ‹ 
+      a.next.round(href='#') ›
+      h2= trip.name
+      p= trip.description
+
+
+    .single__details.inner
+      img.single__map(src=h.staticMap(trip.location.coordinates))
+      p.single__location= trip.location.address
+	 
 
