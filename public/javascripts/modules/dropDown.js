@@ -7,14 +7,10 @@ $('.cool > li').mouseenter(
 		}, 150)
 
 	  const dropdownCoords = $(this).find('.dropdown').offset();
-	  const navCoords = $('nav').offset();
-	  const left = dropdownCoords.left - navCoords.left
-	  const top = dropdownCoords.top - navCoords.top
 
-
-		$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
-		$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
-		$('.dropdownBackground').css("transform", `translate(${left}px, ${top}px)`);
+	$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
+	$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
+	$('.dropdownBackground').css("transform", `translate(${dropdownCoords.left}px, ${dropdownCoords.top}px)`);
 })
 
 $('.cool > li').mouseleave(

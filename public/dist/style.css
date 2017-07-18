@@ -148,8 +148,8 @@ input:focus {
 
 .button {
   border: 0;
-  background: #D6CFCB;
-  color: #303030;
+  background: #696969;
+  color: #fff;
   font-weight: 600; 
 }
 
@@ -264,7 +264,61 @@ a:hover {
   border-radius: 50%;
 }
 
+.ui-dialog {
+  background: #fff;
+  color: #222222; 
+  left: 0;
+  outline: 0 none;
+  padding: 0 !important;
+  position: absolute;
+  top: 0;
+}
 
+
+.ui-dialog .ui-dialog-titlebar {
+    padding: 0.1em .5em;
+    position: relative;
+    font-size: 1em;
+}
+
+
+.ui-dialog .ui-dialog-content {
+    border: 0 none;
+    position: relative;
+    padding: 0 !important;
+}
+
+.ui-widget-overlay{
+    background: #666666 url(images/ui-bg_diagonals-thick_20_666666_40x40.png) 50% 50% repeat;
+    opacity: .5;
+    filter: Alpha(Opacity=50);
+}
+
+.ui-widget-overlay {
+    background: url("images/ui-bg_diagonals-thick_20_666666_40x40.png") repeat scroll 50% 50% #666666;
+    opacity: 0.5;
+}
+
+.ui-widget-overlay {
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.ui-front {
+    z-index: 100;
+}
+
+h2.login {
+  text-align: center;
+
+}
+
+h2.login.top {
+  border-bottom: none; 
+}
 
 
 
