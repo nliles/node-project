@@ -1,7 +1,6 @@
 $(function() {
 
     $('#dialog2').dialog({
-    	title: "Welcome!",
             autoOpen: false,
             width: 550,
             height: 350,

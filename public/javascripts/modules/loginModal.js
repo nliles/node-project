@@ -1,10 +1,9 @@
 $(function() {
 
     $('#dialog').dialog({
-        title: "Good to see you again.",
             autoOpen: false,
-            width: 550,
-            height: 350,
+            width: 600,
+            height: 400,
             modal: true,
             resizable: false,
             draggable: false

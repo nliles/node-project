@@ -131,14 +131,10 @@ $('.cool > li').mouseenter(
 		}, 150)
 
 	  const dropdownCoords = $(this).find('.dropdown').offset();
-	  const navCoords = $('nav').offset();
-	  const left = dropdownCoords.left - navCoords.left
-	  const top = dropdownCoords.top - navCoords.top
 
-
-		$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
-		$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
-		$('.dropdownBackground').css("transform", `translate(${left}px, ${top}px)`);
+	$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
+	$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
+	$('.dropdownBackground').css("transform", `translate(${dropdownCoords.left}px, ${dropdownCoords.top}px)`);
 })
 
 $('.cool > li').mouseleave(
@@ -161,10 +157,9 @@ $('.cool > li').mouseleave(
 $(function() {
 
     $('#dialog').dialog({
-        title: "Good to see you again.",
             autoOpen: false,
-            width: 550,
-            height: 350,
+            width: 600,
+            height: 400,
             modal: true,
             resizable: false,
             draggable: false
@@ -193,7 +188,6 @@ $(function() {
 $(function() {
 
     $('#dialog2').dialog({
-    	title: "Welcome!",
             autoOpen: false,
             width: 550,
             height: 350,
