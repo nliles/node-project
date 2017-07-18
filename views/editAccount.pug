@@ -1,6 +1,6 @@
 extends layout
 
-block content
+block append content
 	.inner
 		form.form(action="/account" method="POST")
 			h2 Edit Your Account
@@ -15,4 +15,6 @@ block content
 			br
 			br
 			input.button(type="submit" value="Update My Account")
+
+
 

@@ -2,7 +2,7 @@ extends layout
 
 block content
 	.inner
-		form.form(action="/register" method="POST")
+		form.form(action="/register" method="POST" enctype="multipart/form-data")
 			h2 Sign Up
 			label(for="name") First Name
 			input(type="text" name="firstname" required)

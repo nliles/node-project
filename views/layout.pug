@@ -6,6 +6,11 @@ html
     link(href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet")
     meta(name="viewport" content="width=device-width, initial-scale=1")
   body
+
+    include mixins/_loginForm
+    include mixins/_resetPassword
+    include mixins/_registerForm
+
     block header
       header.top
         nav.nav
@@ -15,12 +20,20 @@ html
                 ul.cool
                   li.nav__item: a.nav__link(href="/account")= `Hi, ${user.firstname} →`
                     div.dropdown 
+                      img.nav__link.single__image(src=`/uploads/${user.photo}`)
                       a.nav__link(href="/userpage") Account
                       a.nav__link(href="/account") Edit Account
                       a.nav__link(href="/logout") Logout
             else
-              li.nav__item: a.nav__link.border(href="/register") Sign Up
-              li.nav__item: a.nav__link(href="/login") Log In
+              li.nav__item: a.nav__link.border.signup(href="#") Sign Up
+                #dialog2
+                      +registerForm()
+
+              li.nav__item: a.nav__link.login(href="#") Log In
+                #dialog
+                      +loginForm()
+                      +resetPassword()
+
           .nav__section.nav__section--pages
             li.nav__item
               a.nav__link.nav__link--title(href="/") BLOG VOYAGE
@@ -29,8 +42,6 @@ html
             .search
               input.search__input(type="text" placeholder="Search" name="search")
               .search__results
-                //- != h.icon('search')
-
 
     block messages
       if locals.flashes
@@ -46,9 +57,11 @@ html
     block content
 
     block scripts
-      script(src=`https://maps.googleapis.com/maps/api/staticmap?key=AIzaSyD2PXpY9m7cUzNbyLzenp9w2Q436QKvYzI&libraries&center=-33.90000000000001,151.14999999999995&zoom=12&format=png&maptype=roadmap&style=element:geometry%7Ccolor:0xf5f5f5&style=element:labels.icon%7Cvisibility:off&style=element:labels.text.fill%7Ccolor:0x616161&style=element:labels.text.stroke%7Ccolor:0xf5f5f5&style=feature:administrative.land_parcel%7Celement:labels.text.fill%7Ccolor:0xbdbdbd&style=feature:poi%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:poi%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:poi.park%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:poi.park%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:road%7Cvisibility:off&style=feature:road%7Celement:geometry%7Ccolor:0xffffff&style=feature:road.arterial%7Celement:labels.text.fill%7Ccolor:0x757575&style=feature:road.highway%7Celement:geometry%7Ccolor:0xdadada&style=feature:road.highway%7Celement:labels.text.fill%7Ccolor:0x616161&style=feature:road.local%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&style=feature:transit.line%7Celement:geometry%7Ccolor:0xe5e5e5&style=feature:transit.station%7Celement:geometry%7Ccolor:0xeeeeee&style=feature:water%7Celement:geometry%7Ccolor:0xc9c9c9&style=feature:water%7Celement:labels.text.fill%7Ccolor:0x9e9e9e&size=480x360`)
-
- 
+      script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyD2PXpY9m7cUzNbyLzenp9w2Q436QKvYzI&libraries=places`)
+      script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js')  
+      script(src='bower_components/jquery/dist/jquery.min.js')
+      script(src='bower_components/jquery-ui/jquery-ui.min.js')
       script(src="/dist/App.bundle.js")
+
 
 
