@@ -38,6 +38,7 @@ exports.registerForm = (req, res) => {
 }
 
 exports.validateRegister = (req, res, next) => {
+  console.log(req.body.photo)
 	req.sanitizeBody('firstname');
 	req.checkBody('firstname', 'You must provide a first name').notEmpty();
 	req.sanitizeBody('lastname');
@@ -64,6 +65,7 @@ exports.validateRegister = (req, res, next) => {
 }
 
 exports.register = async (req, res, next) => {
+  console.log(req.body.photo)
   const user = new User(req.body);
   const register = promisify(User.register, User);
   await register(user, req.body.password);

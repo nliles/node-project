@@ -37,6 +37,7 @@ const tripSchema = new Schema({
  	 }
 });
 
+
 tripSchema.pre('save', async function(next) {
 	if(!this.isModified('name')) {
 		next();

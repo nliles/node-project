@@ -29,11 +29,11 @@ exports.resizePhoto = async (req, res, next) => {
 	photos = [];
 	for (var i = 0; i < req.files.length; i++)  {
 	const extension = req.files[i].mimetype.split('/')[1];
-	req.body.photo = `${uuid.v4()}.${extension}`;
-	photos.push(req.body.photo);
+	path = `${uuid.v4()}.${extension}`;
+	photos.push(path);
 	const photo = await jimp.read(req.files[i].buffer);
 	await photo.resize(800, jimp.AUTO);
-	await photo.write(`./public/uploads/${req.body.photo}`);
+	await photo.write(`./public/uploads/${path}`);
 	}
 	req.body.photo = photos;
 	next();

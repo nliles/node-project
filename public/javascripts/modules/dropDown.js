@@ -1,31 +1,30 @@
-const links = document.querySelectorAll('.cool > li');
-const background = document.querySelector('.dropdownBackground');
-const nav = document.querySelector('nav');
+$('.cool > li').mouseenter(
+	function() {
+		$('.dropdownBackground').addClass('open');
+		$(this).addClass('trigger-enter');
+		setTimeout(() => {
+			$(this).addClass('trigger-enter-active');	
+		}, 150)
 
-function handleEnter() {
-  background.classList.add('open');
-  this.classList.add('trigger-enter')
-  setTimeout(() => {
-    this.classList.add('trigger-enter-active')
-  }, 150)
-  const dropdown = this.querySelector('.dropdown');
-  const dropdownCoords = dropdown.getBoundingClientRect();
-  const navCoords = nav.getBoundingClientRect();
-  const coords = {
-    width: dropdownCoords.width,
-    height: dropdownCoords.height,
-    left: dropdownCoords.left - navCoords.left,
-    top: dropdownCoords.top - navCoords.top
-  }
-  background.style.setProperty('width', `${coords.width}px`);
-  background.style.setProperty('height', `${coords.height}px`);
-  background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`); 
-}
+	  const dropdownCoords = $(this).find('.dropdown').offset();
+	  const navCoords = $('nav').offset();
+	  const left = dropdownCoords.left - navCoords.left
+	  const top = dropdownCoords.top - navCoords.top
 
-function handleExit() {
-  background.classList.remove('open');
-  this.classList.remove('trigger-enter', 'trigger-enter-active');
-}
 
-links.forEach(link => link.addEventListener('mouseenter', handleEnter));
-links.forEach(link => link.addEventListener('mouseleave', handleExit));
+		$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
+		$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
+		$('.dropdownBackground').css("transform", `translate(${left}px, ${top}px)`);
+})
+
+$('.cool > li').mouseleave(
+	function() {
+		$('.dropdownBackground').removeClass('open');
+		$(this).removeClass('trigger-enter', 'trigger-enter-active');	
+})
+
+
+
+
+
+

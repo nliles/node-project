@@ -236,6 +236,7 @@ pre.error {
 .dropdown a {
   text-decoration: none;
   color: #5E5E5E;
+  margin-left: 10px;
 }
 
 a {
@@ -245,7 +246,7 @@ a {
 }
 
 a:hover {
-    background-color: #ddd;
+    background-color: white;
     color: black;
 }
 
@@ -259,9 +260,15 @@ a:hover {
     color: black;
 }
 
-.round {
-    border-radius: 50%;
+.single__image {
+  border-radius: 50%;
 }
+
+
+
+
+
+
 
 
 

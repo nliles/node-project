@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -122,55 +122,128 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn
 /* 2 */
 /***/ (function(module, exports) {
 
-const links = document.querySelectorAll('.cool > li');
-const background = document.querySelector('.dropdownBackground');
-const nav = document.querySelector('nav');
+$('.cool > li').mouseenter(
+	function() {
+		$('.dropdownBackground').addClass('open');
+		$(this).addClass('trigger-enter');
+		setTimeout(() => {
+			$(this).addClass('trigger-enter-active');	
+		}, 150)
 
-function handleEnter() {
-  background.classList.add('open');
-  this.classList.add('trigger-enter')
-  setTimeout(() => {
-    this.classList.add('trigger-enter-active')
-  }, 150)
-  const dropdown = this.querySelector('.dropdown');
-  const dropdownCoords = dropdown.getBoundingClientRect();
-  const navCoords = nav.getBoundingClientRect();
-  const coords = {
-    width: dropdownCoords.width,
-    height: dropdownCoords.height,
-    left: dropdownCoords.left - navCoords.left,
-    top: dropdownCoords.top - navCoords.top
-  }
-  background.style.setProperty('width', `${coords.width}px`);
-  background.style.setProperty('height', `${coords.height}px`);
-  background.style.setProperty('transform', `translate(${coords.left}px, ${coords.top}px)`); 
-}
+	  const dropdownCoords = $(this).find('.dropdown').offset();
+	  const navCoords = $('nav').offset();
+	  const left = dropdownCoords.left - navCoords.left
+	  const top = dropdownCoords.top - navCoords.top
 
-function handleExit() {
-  background.classList.remove('open');
-  this.classList.remove('trigger-enter', 'trigger-enter-active');
-}
 
-links.forEach(link => link.addEventListener('mouseenter', handleEnter));
-links.forEach(link => link.addEventListener('mouseleave', handleExit));
+		$('.dropdownBackground').css("width", `${dropdownCoords.width}px`);
+		$('.dropdownBackground').css("height", `${dropdownCoords.height}px`);
+		$('.dropdownBackground').css("transform", `translate(${left}px, ${top}px)`);
+})
+
+$('.cool > li').mouseleave(
+	function() {
+		$('.dropdownBackground').removeClass('open');
+		$(this).removeClass('trigger-enter', 'trigger-enter-active');	
+})
+
+
+
+
+
+
+
 
 /***/ }),
 /* 3 */
+/***/ (function(module, exports) {
+
+$(function() {
+
+    $('#dialog').dialog({
+        title: "Good to see you again.",
+            autoOpen: false,
+            width: 550,
+            height: 350,
+            modal: true,
+            resizable: false,
+            draggable: false
+    })
+	$('.login').click(function(e) {
+		   $('#dialog').dialog('open'); 
+		   // $('html').css('overflow', 'hidden');
+           // $('body').bind('touchmove', function(e) {
+           //      e.preventDefault()
+           //  });
+	});
+	$('#dialog').dialog({
+   		close: function( event, ui ) {
+            $('html').css('overflow', 'scroll');
+            // $('body').unbind('touchmove');			
+   		}
+	});
+});  
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+$(function() {
+
+    $('#dialog2').dialog({
+    	title: "Welcome!",
+            autoOpen: false,
+            width: 550,
+            height: 350,
+            modal: true,
+            resizable: false,
+            draggable: false
+    })
+	$('.signup').click(function(e) {
+		   $('#dialog2').dialog('open'); 
+		   // $('html').css('overflow', 'hidden');
+           // $('body').bind('touchmove', function(e) {
+           //      e.preventDefault()
+           //  });
+	});
+	$('#dialog2').dialog({
+   		close: function( event, ui ) {
+            $('html').css('overflow', 'scroll');
+            // $('body').unbind('touchmove');			
+   		}
+	});
+});  
+
+
+
+/***/ }),
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_bling__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_autocomplete__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dropdown__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dropdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__modules_dropdown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__modules_dropDown__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_bling__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_autocomplete__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_loginModal__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_loginModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modules_loginModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_registerModal__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_registerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_registerModal__);
 // import '../sass/style.scss';
 
 
 
 
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_autocomplete__["a" /* default */])( __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#address'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#lat'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__modules_bling__["a" /* $ */])('#lng') );
+
+
+
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__modules_autocomplete__["a" /* default */])( __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#address'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#lat'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#lng') );
+
+
 
 
 

@@ -1,3 +1,3 @@
 
 
-export default imageSlider;
+// export default imageSlider;
