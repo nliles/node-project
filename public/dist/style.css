@@ -320,6 +320,11 @@ h2.login.top {
   border-bottom: none; 
 }
 
+li {
+    list-style: none; 
+}
+
+
 
 
 
