@@ -9,26 +9,38 @@ const tripSchema = new Schema({
 		type: String,
 		required: 'Please supply a name',
 		trim: true
-	}, 
+	},
 	slug: String,
 	description: {
 		type: String,
 		trim: true
 	},
-	  location: {
-	    type: {
-	      type: String,
-	      default: 'Point'     
-	    },
-	    coordinates: [{
-	      type: Number,
-	      required: 'You must supply coordinates'
-	    }],
-	    address: {
-	      type: String,
-	      required: 'You must supply an address'
-	    }
-	  },
+	locations: [
+
+		  {
+
+		    type: {
+		      type: String,
+		      default: 'Point'     
+		    },
+
+		    coordinates: [
+
+		    {
+		      type: Number,
+		      required: 'You must supply coordinates'
+		    }
+
+		    ],
+
+		    address: {
+		      type: String,
+		      required: 'You must supply an address'
+		    }
+
+		  }
+
+	],
 	photo: [String],
 	author: {
 	    type: mongoose.Schema.ObjectId,

@@ -40,6 +40,7 @@ exports.resizePhoto = async (req, res, next) => {
 };
 
 exports.createTrip = async (req, res) => {
+	console.log(req.body.address);
 	req.body.author = req.user._id;
 	const trip = await (new Trip(req.body)).save();
 	req.flash('success', `Successfully Created ${trip.name}.`);

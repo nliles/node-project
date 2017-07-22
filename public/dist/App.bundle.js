@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -154,6 +154,84 @@ $('.cool > li').mouseleave(
 /* 3 */
 /***/ (function(module, exports) {
 
+$(document).ready(function() {
+    var maxFields       = 5;
+    var wrapper         = $(".container2");
+    var addButton      = $(".addPhotoField");
+  
+    var x = 1;
+    $(addButton).click(function(e) {
+        e.preventDefault();
+        if(x < maxFields){
+            x++;
+            $(wrapper).append('<div><input type="file" name="photo" accept="image/gif, image/png, image/jpeg" multiple/><a href="#" class="delete">Delete</a></div>'); //add input box
+        }
+	   else {
+	  		alert('The maximum you can add is 5.')
+	  	}
+    });
+  
+    $(wrapper).on("click", ".delete", function(e){
+        e.preventDefault(); 
+        $(this).parent('div').remove(); 
+        x--;
+    })
+});
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports) {
+
+$(document).ready(function() {
+    var maxFields = 10;
+    var wrapper = $(".container1");
+    var addButton = $(".addLocationField");
+  
+    var x = 1;
+    $(addButton).click(function(e) {
+        e.preventDefault();
+        if(x < maxFields){
+            x++;
+ 			$(wrapper).append('<div><label for="address">Address</label><input type="text" class="address" name="location[address]/><label for="lng">Address lng</label><input type="lng" class="lng" name="location[coordinates][0]" required/><label for="lat">Address Lat</label><input type="lat" class="lat" name="location[coordinates][1]" required /><a href="#" class="delete">Delete</a></div></div>'); 
+        }
+	   else {
+	  		alert('The maximum you can add is 10.')
+	  	}
+    });
+  
+    $(wrapper).on("click", ".delete", function(e){
+        e.preventDefault(); 
+        $(this).parent('div').remove(); 
+        x--;
+    })
+});
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+  // var sliderCount = 1;
+  // showImage(sliderCount);
+
+  // function buttonClick(n) {
+  //     showImage(sliderCount += n);
+  // }
+
+  // function showImage(n) {
+  //     var i;
+  //     var images = document.getElementsByClassName("mySlides");
+  //     if (n > images.length) {sliderCount = 1} 
+  //     if (n < 1) {sliderCount = images.length} ;
+  //     for (i = 0; i < images.length; i++) {
+  //         images[i].style.display = "none"; 
+  //     }
+  //     images[sliderCount-1].style.display = "block"; 
+  // }
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
 $(function() {
 
     $('#dialog').dialog({
@@ -182,7 +260,7 @@ $(function() {
 
 
 /***/ }),
-/* 4 */
+/* 7 */
 /***/ (function(module, exports) {
 
 $(function() {
@@ -213,22 +291,25 @@ $(function() {
 
 
 /***/ }),
-/* 5 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__modules_dropDown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_bling__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_autocomplete__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_loginModal__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_loginModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__modules_loginModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_registerModal__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_registerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_registerModal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_imageSlider__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_imageSlider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modules_imageSlider__);
-// import '../sass/style.scss';
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dynamicFormLocation__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_dynamicFormLocation___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__modules_dynamicFormLocation__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_bling__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_autocomplete__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_loginModal__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_loginModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modules_loginModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_registerModal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_registerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__modules_registerModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_imageSlider__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_imageSlider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__modules_imageSlider__);
 
 
 
@@ -238,31 +319,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_2__modules_autocomplete__["a" /* default */])( __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#address'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#lat'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_1__modules_bling__["a" /* $ */])('#lng') );
 
 
 
-/***/ }),
-/* 6 */
-/***/ (function(module, exports) {
-
-// var slideIndex = 1;
-// showDivs(slideIndex);
-
-// function plusDivs(n) {
-//     showDivs(slideIndex += n);
-// }
-
-// function showDivs(n) {
-//     var i;
-//     var x = document.getElementsByClassName("mySlides");
-//     if (n > x.length) {slideIndex = 1} 
-//     if (n < 1) {slideIndex = x.length} ;
-//     for (i = 0; i < x.length; i++) {
-//         x[i].style.display = "none"; 
-//     }
-//     x[slideIndex-1].style.display = "block"; 
-// }
+__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__modules_autocomplete__["a" /* default */])( __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__modules_bling__["a" /* $ */])('.address'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__modules_bling__["a" /* $ */])('.lat'), __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__modules_bling__["a" /* $ */])('.lng') );
 
 
 

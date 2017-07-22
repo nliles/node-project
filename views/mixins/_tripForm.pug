@@ -1,19 +1,28 @@
 mixin tripForm()
-  form.form(action="/trip" method="POST" enctype="multipart/form-data")
+  form.form#tripForm(action="/trip" method="POST" enctype="multipart/form-data")
     h2 Create a Trip
     label(for="name") Trip Name
     input(type="text" name="name")
     label(for="description") Description
     textarea(name="description")
     label(for="address") Address
-    input(type="text" id="address" name="location[address]")
+    input(type="text" class="address" name="location[address]")
     label(for="lng") Address lng
-    input(type="text", id="lng", name="location[coordinates][0]" required)
+    input(type="text", class="lng", name="location[coordinates][0]" required)
     label(for="lat") Address Lat
-    input(type="text", id="lat", name="location[coordinates][1]" required)
+    input(type="text", class="lat", name="location[coordinates][1]" required)
+    br
+    br
+    div.container1
+        button.button.addLocationField Add Location
     label(for="photo") Select Images
     input(type="file" name="photo" id="photo" accept="image/gif, image/png, image/jpeg" multiple)
     br
     br
+    div.container2
+        button.button.addPhotoField Add More
+    br
+    br
     input.button(type="submit" value="Submit")
+
 
