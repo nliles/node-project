@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	.inner
+		h2= `${user.firstname}'s Trips`
+			ul
+				each trip in trips
+					li
+						a(href=`/trip/${trip.slug}`) #{trip.name}
+		br
+		a(href="/trip") Add Trip
+
+

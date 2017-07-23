@@ -1,8 +1,21 @@
 mixin loginForm()
-  form(action="/login" method="POST")
-    h2 Login
-    label(for="email") Email Address
-    input(type="email" name="email")
-    label(for="password") Password
-    input(type="password" name="password")
-    input(type="submit" value="Log In →")
+    form.form(action="/login" method="POST")
+        h2.login.top Nice to see you. 
+        h2.login Please log in.
+        label(for="email") Email Address
+        input(type="email" name="email")
+        br
+        label(for="password") Password
+        input(type="password" name="password")
+        br
+        br
+        br
+        input.button(type="submit" value="Log In")
+
+    form.form(action="/account/forgot" method="post")
+        h2.login Reset Password.
+        label(for="email") Email
+        input(type="email" name="email")
+        br
+        br
+        input.button(type="submit" value="Submit")

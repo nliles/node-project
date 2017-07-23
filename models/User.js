@@ -6,11 +6,17 @@ const mongodbErrorHandler = require('mongoose-mongodb-errors');
 const passportLocalMongoose = require('passport-local-mongoose');
 
 const userSchema = new Schema({
-	name: {
+	firstname: {
 		type: String,
 		required: 'Please supply a name',
 		trim: true
 	},
+	lastname: {
+		type: String,
+		required: 'Please supply a name',
+		trim: true
+	},
+	photo: String,
 	email: {
 		type: String,
 		unique: true,

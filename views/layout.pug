@@ -1,20 +1,45 @@
 doctype html
 html
   head
-    link(type='text/css', rel='stylesheet', href='/site.css')   
-    title Hello
+    title= `${title} | ${h.siteName}`
+    link(rel='stylesheet', href='/dist/style.css')
+    link(href="https://fonts.googleapis.com/css?family=Montserrat:300" rel="stylesheet")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
   body
-    ul
-      li
-        a(href='/') Home  
-    if user
-      li
-        a(href='/logout') Logout  
-    else
-      li
-        a(href='/login') Login  
-      li
-        a(href='/register') Register  
+
+    include mixins/_loginForm
+    include mixins/_registerForm
+
+    block header
+      header.top
+        nav.nav
+          div.dropdownBackground
+          .nav__section.nav__section--user
+            if user
+                ul.cool
+                  li.nav__item: a.nav__link(href="/account")= `Hi, ${user.firstname} →`
+                    div.dropdown 
+                      img.nav__link.single__image(src=`/uploads/${user.photo}`)
+                      a.nav__link(href="/userpage") Account
+                      a.nav__link(href="/account") Edit Account
+                      a.nav__link(href="/logout") Logout
+            else
+              li.nav__item: a.nav__link.border.signup(href="#") Sign Up
+                #dialog2
+                      +registerForm()
+
+              li.nav__item: a.nav__link.login(href="#") Log In
+                #dialog
+                      +loginForm()
+
+          .nav__section.nav__section--pages
+            li.nav__item
+              a.nav__link.nav__link--title(href="/") BLOG VOYAGE
+
+          .nav__section.nav__section--search
+            .search
+              input.search__input(type="text" placeholder="Search" name="search")
+              .search__results
 
     block messages
       if locals.flashes
@@ -28,3 +53,14 @@ html
                   button.flash__remove(onClick="this.parentElement.remove()") &times;
     .content
       block content
+
+
+    block scripts
+      script(src=`https://maps.googleapis.com/maps/api/js?key=AIzaSyD2PXpY9m7cUzNbyLzenp9w2Q436QKvYzI&libraries=places`)
+      script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js") 
+      script(src='bower_components/jquery/dist/jquery.min.js')
+      script(src='bower_components/jquery-ui/jquery-ui.min.js')
+      script(src="/dist/App.bundle.js")
+
+
+

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+	.inner
+		h2 Trips
+			ul
+				each trip in trips
+					li
+						a(href=`/trip/${trip.slug}`) #{trip.name}
+
+
+					
+
+
+
+
+

@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  .inner#tripForm
+    .single__hero
+      #slide_cont
+      br
+      if trip.photo
+        ul
+          each photo in trip.photo
+            li.tag
+              img.mySlides(src=`/uploads/${photo}`)
+
+      button.sliderButton.display-left(onclick='buttonClick(-1)') ❮
+      button.sliderButton.display-right(onclick='buttonClick(+1)') ❯
+      h2= trip.name
+      p= trip.description
+
+
+    .single__details.inner
+      img.single__map(src=h.staticMap(trip.location.coordinates))
+      p.single__location= trip.location.address
+
+    script.
+      var sliderCount = 1;
+      showImage(sliderCount);
+
+      function buttonClick(n) {
+          showImage(sliderCount += n);
+      }
+
+      function showImage(n) {
+          var i;
+          var images = document.getElementsByClassName("mySlides");
+          if (n > images.length) {sliderCount = 1} 
+          if (n < 1) {sliderCount = images.length} ;
+          for (i = 0; i < images.length; i++) {
+              images[i].style.display = "none"; 
+          }
+          images[sliderCount-1].style.display = "block"; 
+      }
+
+
+
+

@@ -17,11 +17,16 @@ mongoose.connection.on('error', (err) => {
 });
 
 require('./models/User')
-
+require('./models/Photo')
+require('./models/Trip')
 
 const app = require('./app');
 app.set('port', process.env.PORT || 7777);
 const server = app.listen(app.get('port'), () => {
   console.log(`Express running → PORT ${server.address().port}`);
 });
+
+
+
+
 
