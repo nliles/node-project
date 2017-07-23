@@ -3,7 +3,7 @@ function autocomplete(input, latInput, lngInput) {
 
 	const dropdown = new google.maps.places.Autocomplete(input);
 
-	dropdown.addListener('place_changed', () => {
+	$(dropdown).on('place_changed', () => {
 		const place = dropdown.getPlace();
 		latInput.value = place.geometry.location.lat();
 		lngInput.value = place.geometry.location.lng();
