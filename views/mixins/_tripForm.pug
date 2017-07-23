@@ -1,5 +1,5 @@
 mixin tripForm()
-  form.form#tripForm(action="/trip" method="POST" enctype="multipart/form-data")
+  form.form(action="/trip" method="POST" enctype="multipart/form-data")
     h2 Create a Trip
     label(for="name") Trip Name
     input(type="text" name="name")
