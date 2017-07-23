@@ -9,7 +9,7 @@ function dynamicForm(max, containerClass, buttonClass, html) {
         e.preventDefault();
         if(x < maxFields){
             x++;
-            $(wrapper).append(html + '<a href="#" class="delete">Delete</a></div>'); 
+            $(wrapper).prepend(html + '<a href="#" class="delete">Delete</a></div>' ); 
         }
        else {
             alert('The maximum you can add is 5.')
