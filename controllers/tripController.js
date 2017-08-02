@@ -49,7 +49,6 @@ exports.createTrip = async (req, res) => {
 			coordinates: locations.coordinates[index]
 		};
 	})
-	console.log(locs, '........');
 
 	req.body.locations = locs;
 
