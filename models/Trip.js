@@ -15,32 +15,23 @@ const tripSchema = new Schema({
 		type: String,
 		trim: true
 	},
-	locations: [
-
-		  {
-
+	locations: 
+		  [{
 		    type: {
 		      type: String,
 		      default: 'Point'     
 		    },
-
-		    coordinates: [
-
+		    address: 
 		    {
+		      type: String,
+		      required: 'You must supply an address',
+		    },
+		    coordinates: 
+		    [{
 		      type: Number,
 		      required: 'You must supply coordinates'
-		    }
-
-		    ],
-
-		    address: {
-		      type: String,
-		      required: 'You must supply an address'
-		    }
-
-		  }
-
-	],
+		    }]
+		  }],
 	photo: [String],
 	author: {
 	    type: mongoose.Schema.ObjectId,

@@ -1,4 +1,3 @@
-$(function() {
 
     $('#dialog').dialog({
             autoOpen: false,
@@ -21,5 +20,5 @@ $(function() {
             // $('body').unbind('touchmove');			
    		}
 	});
-});  
+ 
 

@@ -93,6 +93,33 @@ function autocomplete(input, latInput, lngInput) {
 
 /***/ }),
 /* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return $; });
+/* unused harmony export $$ */
+// based on https://gist.github.com/paulirish/12fb951a8b893a454b32
+
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
+Node.prototype.on = window.on = function (name, fn) {
+  this.addEventListener(name, fn);
+};
+
+NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
+
+NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
+  this.forEach((elem) => {
+    elem.on(name, fn);
+  });
+};
+
+
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 $('.cool > li').mouseenter(
@@ -124,7 +151,7 @@ $('.cool > li').mouseleave(
 
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 function dynamicForm(max, containerClass, buttonClass, html) {
@@ -165,33 +192,31 @@ dynamicForm(10, ".container1", ".addLocationField", html1)
 
 
 /***/ }),
-/* 3 */,
 /* 4 */
 /***/ (function(module, exports) {
 
-  // var sliderCount = 1;
-  // showImage(sliderCount);
+// var sliderCount = 1;
+// showImage(sliderCount);
 
-  // function buttonClick(n) {
-  //     showImage(sliderCount += n);
-  // }
+// function buttonClick(n) {
+//     showImage(sliderCount += n);
+// }
 
-  // function showImage(n) {
-  //     var i;
-  //     var images = document.getElementsByClassName("mySlides");
-  //     if (n > images.length) {sliderCount = 1} 
-  //     if (n < 1) {sliderCount = images.length} ;
-  //     for (i = 0; i < images.length; i++) {
-  //         images[i].style.display = "none"; 
-  //     }
-  //     images[sliderCount-1].style.display = "block"; 
-  // }
+// function showImage(n) {
+//     var i;
+//     var images = document.getElementsByClassName("mySlides");
+//     if (n > images.length) {sliderCount = 1} 
+//     if (n < 1) {sliderCount = images.length} ;
+//     for (i = 0; i < images.length; i++) {
+//         images[i].style.display = "none"; 
+//     }
+//     images[sliderCount-1].style.display = "block"; 
+// }
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-$(function() {
 
     $('#dialog').dialog({
             autoOpen: false,
@@ -214,7 +239,7 @@ $(function() {
             // $('body').unbind('touchmove');			
    		}
 	});
-});  
+ 
 
 
 
@@ -222,9 +247,7 @@ $(function() {
 /* 6 */
 /***/ (function(module, exports) {
 
-$(function() {
-
-    $('#dialog2').dialog({
+  $('#dialog2').dialog({
             autoOpen: false,
             width: 550,
             height: 350,
@@ -245,7 +268,7 @@ $(function() {
             // $('body').unbind('touchmove');			
    		}
 	});
-});  
+
 
 
 
@@ -255,11 +278,11 @@ $(function() {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_dropDown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__modules_dropDown__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__modules_dynamicForm__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_bling__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__modules_bling__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__modules_autocomplete__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_loginModal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__modules_loginModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__modules_loginModal__);
@@ -267,6 +290,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__modules_registerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__modules_registerModal__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_imageSlider__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__modules_imageSlider___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__modules_imageSlider__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_displayMap__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__modules_displayMap___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__modules_displayMap__);
 
 
 
@@ -284,29 +309,15 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_3__modules_autocomplete__["a" /*
 
 /***/ }),
 /* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return $; });
-/* unused harmony export $$ */
-// based on https://gist.github.com/paulirish/12fb951a8b893a454b32
-
-const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
-
-Node.prototype.on = window.on = function (name, fn) {
-  this.addEventListener(name, fn);
-};
-
-NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
-
-NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
-  this.forEach((elem) => {
-    elem.on(name, fn);
-  });
-};
-
-
+var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+		  center: {lat: -34.397, lng: 150.644},
+		  zoom: 8
+	});
+}
 
 
 /***/ })

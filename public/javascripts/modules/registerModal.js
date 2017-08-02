@@ -1,6 +1,4 @@
-$(function() {
-
-    $('#dialog2').dialog({
+  $('#dialog2').dialog({
             autoOpen: false,
             width: 550,
             height: 350,
@@ -21,5 +19,5 @@ $(function() {
             // $('body').unbind('touchmove');			
    		}
 	});
-});  
+
 

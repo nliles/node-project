@@ -17,9 +17,11 @@ block content
       p= trip.description
 
 
-    .single__details.inner
-      img.single__map(src=h.staticMap(trip.location.coordinates))
-      p.single__location= trip.location.address
+    //- .single__details.inner
+    //-   img.single__map(src=h.staticMap(trip.locations.coordinates))
+    //-   p.single__location= trip.locations.address
+    
+    div#map Google Maps
 
     script.
       var sliderCount = 1;
@@ -39,6 +41,7 @@ block content
           }
           images[sliderCount-1].style.display = "block"; 
       }
+
 
 
 
