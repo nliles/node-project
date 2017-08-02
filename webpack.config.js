@@ -1,7 +1,3 @@
-/*
-  Okay folks, want to learn a little bit about webpack?
-*/
-
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -18,7 +14,7 @@ const javascript = {
   use: [{
     loader: 'babel-loader',
     options: { presets: ['es2015'] } // this is one way of passing options
-  }],
+  }]
 };
 
 /*
@@ -66,17 +62,17 @@ const config = {
 };
 
   // remember we said webpack sees everthing as modules and how different loaders are responsible for different file types? Here is is where we implement them. Pass it the rules for our JS and our styles
-  // module: {
-  //   rules: [javascript, styles]
-  // },
+  module: {
+    rules: [javascript, styles]
+  },
   // finally we pass it an array of our plugins - uncomment if you want to uglify
-  // plugins: [uglify]
-//   plugins: [
+  plugins: [uglify]
+  plugins: [
 //     // here is where we tell it to output our css to a separate file
-//     new ExtractTextPlugin('style.css'),
-//   ]
-// };
+    new ExtractTextPlugin('style.css'),
+  ]
+};
 // webpack is cranky about some packages using a soon to be deprecated API. shhhhhhh
-// process.noDeprecation = true;
+process.noDeprecation = true;
 
 module.exports = config;

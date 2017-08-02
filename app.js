@@ -20,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug'); 
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/bower_components',  express.static(path.join(__dirname, '/bower_components')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

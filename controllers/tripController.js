@@ -40,8 +40,19 @@ exports.resizePhoto = async (req, res, next) => {
 };
 
 exports.createTrip = async (req, res) => {
-	console.log(req.body);
 	req.body.author = req.user._id;
+	var locations = req.body.locations;
+
+	var locs = locations.address.map(function (address, index) {
+		return {
+			address: address,
+			coordinates: locations.coordinates[index]
+		};
+	})
+	console.log(locs, '........');
+
+	req.body.locations = locs;
+
 	const trip = await (new Trip(req.body)).save();
 	req.flash('success', `Successfully Created ${trip.name}.`);
 	res.redirect(`/trip/${trip.slug}`);

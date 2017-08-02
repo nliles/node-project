@@ -89,7 +89,7 @@ label {
   justify-content: space-between;
   background: white; 
   border-bottom: 1px solid #5E5E5E;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .nav__section {
@@ -205,7 +205,7 @@ pre.error {
     transform: translateY(100px);
     will-change: transform;
     display: none;
-    z-index: -1;
+    z-index: 1;
   }
 
   .trigger-enter .dropdown {
@@ -217,8 +217,6 @@ pre.error {
   }
 
 .dropdownBackground {
-  width:100px;
-  height:100px;
   position: absolute;
   background: #fff;
   transition:all 0.3s, opacity 0.1s, translate 0.2s;
@@ -226,7 +224,7 @@ pre.error {
   display: flex;
   justify-content: flex-start;
   opacity:0;
-  z-index: -1;
+  z-index: 1;
 }
 
 .dropdownBackground.open {
@@ -350,6 +348,13 @@ li {
     display: inline-block;
     margin: 4px 2px;
 }
+
+#map {
+  height: 100px;
+  width: 200px;
+  background-color: gray;
+}
+
 
 
 
