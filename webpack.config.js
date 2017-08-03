@@ -58,15 +58,15 @@ const config = {
     // we can use "substitutions" in file names like [name] and [hash]
     // name will be `App` because that is what we used above in our entry
     filename: '[name].bundle.js'
-  }
-};
+  },
+
 
   // remember we said webpack sees everthing as modules and how different loaders are responsible for different file types? Here is is where we implement them. Pass it the rules for our JS and our styles
   module: {
-    rules: [javascript, styles]
+    rules: [javascript]
   },
   // finally we pass it an array of our plugins - uncomment if you want to uglify
-  plugins: [uglify]
+  plugins: [uglify],
   plugins: [
 //     // here is where we tell it to output our css to a separate file
     new ExtractTextPlugin('style.css'),
