@@ -1,4 +1,3 @@
-
 // $('.display-left').on('click', function() {
 // 	buttonClick(-1)
 // })
@@ -23,7 +22,7 @@
 //   }
 //     images[sliderCount-1].style.display = "block"; 
 // }
-// if this page has a slider:
+// // if this page has a slider:
 
 
 // var sliderCount = 1;
