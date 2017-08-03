@@ -15,9 +15,14 @@ block content
       button.sliderButton.display-right ❯
       h2= trip.name
       p= trip.description
-    
-      #map 
 
+      if trip.locations
+        ul
+          each location in trip.locations
+            li.marker= location.coordinates
+            li.mark= `${location.address}`
+                   
+      #map 
 
 
 

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,11 +70,38 @@
 "use strict";
 
 
-var _dynamicForm = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+function autocomplete(input, latInput, lngInput) {
+	if (!input) return;
+	var dropdown = new google.maps.places.Autocomplete(input);
+
+	dropdown.addListener('place_changed', function () {
+		var place = dropdown.getPlace();
+		latInput.value = place.geometry.location.lat();
+		lngInput.value = place.geometry.location.lng();
+	});
+
+	input.addEventListener('keydown', function (e) {
+		if (e.keyCode === 13) e.preventDefault();
+	});
+}
+
+exports.default = autocomplete;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _dynamicForm = __webpack_require__(2);
 
 var _dynamicForm2 = _interopRequireDefault(_dynamicForm);
 
-var _autocomplete = __webpack_require__(2);
+var _autocomplete = __webpack_require__(0);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
@@ -103,13 +130,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _autocomplete2.default)($('.address')[0], $('.lat')[0], $('.lng')[0]);
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _autocomplete = __webpack_require__(2);
+var _autocomplete = __webpack_require__(0);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
@@ -144,33 +171,6 @@ dynamicForm(5, ".container2", ".addPhotoField", html);
 
 var html1 = '<div><label for="address">Address</label><input type="text" class="address2" name="locations[address]"/><label for="lng">Address lng</label><input type="text" class="lng2" name="locations[coordinates][0]" required/><label for="lat">Address Lat</label><input type="text" class="lat2" name="locations[coordinates][1]" required />';
 dynamicForm(10, ".container1", ".addLocationField", html1);
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-function autocomplete(input, latInput, lngInput) {
-	if (!input) return;
-	var dropdown = new google.maps.places.Autocomplete(input);
-
-	dropdown.addListener('place_changed', function () {
-		var place = dropdown.getPlace();
-		latInput.value = place.geometry.location.lat();
-		lngInput.value = place.geometry.location.lng();
-	});
-
-	input.addEventListener('keydown', function (e) {
-		if (e.keyCode === 13) e.preventDefault();
-	});
-}
-
-exports.default = autocomplete;
 
 /***/ }),
 /* 3 */
@@ -305,132 +305,145 @@ $('.cool > li').mouseleave(function () {
 
 
 function initMap() {
-	// Styles a map in night mode.
-	var location = { lat: 40.674, lng: -73.945 };
-	var map = new google.maps.Map(document.getElementById('map'), {
-		center: location,
-		zoom: 12,
-		styles: [{
-			"featureType": "all",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"weight": "2.00"
-			}]
-		}, {
-			"featureType": "all",
-			"elementType": "geometry.stroke",
-			"stylers": [{
-				"color": "#9c9c9c"
-			}]
-		}, {
-			"featureType": "all",
-			"elementType": "labels.text",
-			"stylers": [{
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "landscape",
-			"elementType": "all",
-			"stylers": [{
-				"color": "#f2f2f2"
-			}]
-		}, {
-			"featureType": "landscape",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#ffffff"
-			}]
-		}, {
-			"featureType": "landscape.man_made",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#ffffff"
-			}]
-		}, {
-			"featureType": "poi",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "all",
-			"stylers": [{
-				"saturation": -100
-			}, {
-				"lightness": 45
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#eeeeee"
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"color": "#7b7b7b"
-			}]
-		}, {
-			"featureType": "road",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"color": "#ffffff"
-			}]
-		}, {
-			"featureType": "road.highway",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "simplified"
-			}]
-		}, {
-			"featureType": "road.arterial",
-			"elementType": "labels.icon",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "transit",
-			"elementType": "all",
-			"stylers": [{
-				"visibility": "off"
-			}]
-		}, {
-			"featureType": "water",
-			"elementType": "all",
-			"stylers": [{
-				"color": "#46bcec"
-			}, {
-				"visibility": "on"
-			}]
-		}, {
-			"featureType": "water",
-			"elementType": "geometry.fill",
-			"stylers": [{
-				"color": "#c8d7d4"
-			}]
-		}, {
-			"featureType": "water",
-			"elementType": "labels.text.fill",
-			"stylers": [{
-				"color": "#070707"
-			}]
-		}, {
-			"featureType": "water",
-			"elementType": "labels.text.stroke",
-			"stylers": [{
-				"color": "#ffffff"
-			}]
-		}]
-	});
-	var marker = new google.maps.Marker({
-		position: location,
-		map: map,
-		icon: 'blue_markerA.png'
-	});
-	marker.setMap(map);
+    var location = { lat: 4.7110, lng: -74.0721 };
+    var map = new google.maps.Map(document.getElementById('map'), {
+        center: location,
+        zoom: 12,
+        styles: [{
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#e9e9e9"
+            }, {
+                "lightness": 17
+            }]
+        }, {
+            "featureType": "landscape",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#f5f5f5"
+            }, {
+                "lightness": 20
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#ffffff"
+            }, {
+                "lightness": 17
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#ffffff"
+            }, {
+                "lightness": 29
+            }, {
+                "weight": 0.2
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#ffffff"
+            }, {
+                "lightness": 18
+            }]
+        }, {
+            "featureType": "road.local",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#ffffff"
+            }, {
+                "lightness": 16
+            }]
+        }, {
+            "featureType": "poi",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#f5f5f5"
+            }, {
+                "lightness": 21
+            }]
+        }, {
+            "featureType": "poi.park",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#dedede"
+            }, {
+                "lightness": 21
+            }]
+        }, {
+            "elementType": "labels.text.stroke",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#ffffff"
+            }, {
+                "lightness": 16
+            }]
+        }, {
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "saturation": 36
+            }, {
+                "color": "#333333"
+            }, {
+                "lightness": 40
+            }]
+        }, {
+            "elementType": "labels.icon",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "transit",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#f2f2f2"
+            }, {
+                "lightness": 19
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#fefefe"
+            }, {
+                "lightness": 20
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#fefefe"
+            }, {
+                "lightness": 17
+            }, {
+                "weight": 1.2
+            }]
+        }]
+    });
+
+    var coords = [];
+    var m = document.querySelectorAll('.marker');
+    m.forEach(function (m) {
+        return coords.push(m.innerHTML);
+    });
+
+    var marker, i;
+    for (i = 0; i < coords.length; i++) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(coords[i].split(",")[1], coords[i].split(",")[0]),
+            map: map
+        });
+        marker.setMap(map);
+    }
 }
+
+// window.onload = initMap;
 
 /***/ })
 /******/ ]);
