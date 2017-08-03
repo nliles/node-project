@@ -43,7 +43,7 @@ exports.createTrip = async (req, res) => {
 	req.body.author = req.user._id;
 	var locations = req.body.locations;
 
-	if (locations.coordinates.length > 2) {
+	if (locations.coordinates.length > 1) {	
 		var locs = locations.address.map(function (address, index) {
 			return {
 				address: address,
