@@ -94,16 +94,13 @@ var _dropDown = __webpack_require__(6);
 
 var _dropDown2 = _interopRequireDefault(_dropDown);
 
+var _displayMap = __webpack_require__(7);
+
+var _displayMap2 = _interopRequireDefault(_displayMap);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import displayMap from './modules/displayMap';
-
-
-var addressInput = document.querySelector('.address');
-var latInput = document.querySelector('.lat');
-var lngInput = document.querySelector('.lng');
-
-(0, _autocomplete2.default)(addressInput, latInput, lngInput);
+(0, _autocomplete2.default)($('.address')[0], $('.lat')[0], $('.lng')[0]);
 
 /***/ }),
 /* 1 */
@@ -111,6 +108,12 @@ var lngInput = document.querySelector('.lng');
 
 "use strict";
 
+
+var _autocomplete = __webpack_require__(2);
+
+var _autocomplete2 = _interopRequireDefault(_autocomplete);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function dynamicForm(max, containerClass, buttonClass, html) {
     var wrapper = $(containerClass);
@@ -123,8 +126,9 @@ function dynamicForm(max, containerClass, buttonClass, html) {
         if (x < max) {
             x++;
             $(wrapper).prepend(html + '<a href="#" class="delete">Delete</a></div>');
+            (0, _autocomplete2.default)($('.address2')[0], $('.lat2')[0], $('.lng2')[0]);
         } else {
-            alert("The maximum you can add is " + max + ".");
+            alert('The maximum you can add is ' + max + '.');
         }
     });
 
@@ -138,7 +142,7 @@ function dynamicForm(max, containerClass, buttonClass, html) {
 var html = '<div><input type="file" name="photo" accept="image/gif, image/png, image/jpeg" multiple/>';
 dynamicForm(5, ".container2", ".addPhotoField", html);
 
-var html1 = '<div><label for="address">Address</label><input type="text" class="address" name="locations[address]"/><label for="lng">Address lng</label><input type="text" class="lng" name="locations[coordinates][0]" required/><label for="lat">Address Lat</label><input type="text" class="lat" name="locations[coordinates][1]" required />';
+var html1 = '<div><label for="address">Address</label><input type="text" class="address2" name="locations[address]"/><label for="lng">Address lng</label><input type="text" class="lng2" name="locations[coordinates][0]" required/><label for="lat">Address Lat</label><input type="text" class="lat2" name="locations[coordinates][1]" required />';
 dynamicForm(10, ".container1", ".addLocationField", html1);
 
 /***/ }),
@@ -231,7 +235,6 @@ $('#dialog2').dialog({
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-
 // $('.display-left').on('click', function() {
 // 	buttonClick(-1)
 // })
@@ -255,7 +258,7 @@ $('#dialog2').dialog({
 //   }
 //     images[sliderCount-1].style.display = "block"; 
 // }
-// if this page has a slider:
+// // if this page has a slider:
 
 
 // var sliderCount = 1;
@@ -289,6 +292,141 @@ $('.cool > li').mouseleave(function () {
 	$('.dropdownBackground').removeClass('open');
 	$(this).removeClass('trigger-enter', 'trigger-enter-active');
 });
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function initMap() {
+	// Styles a map in night mode.
+	var location = { lat: 40.674, lng: -73.945 };
+	var map = new google.maps.Map(document.getElementById('map'), {
+		center: location,
+		zoom: 12,
+		styles: [{
+			"featureType": "all",
+			"elementType": "geometry.fill",
+			"stylers": [{
+				"weight": "2.00"
+			}]
+		}, {
+			"featureType": "all",
+			"elementType": "geometry.stroke",
+			"stylers": [{
+				"color": "#9c9c9c"
+			}]
+		}, {
+			"featureType": "all",
+			"elementType": "labels.text",
+			"stylers": [{
+				"visibility": "on"
+			}]
+		}, {
+			"featureType": "landscape",
+			"elementType": "all",
+			"stylers": [{
+				"color": "#f2f2f2"
+			}]
+		}, {
+			"featureType": "landscape",
+			"elementType": "geometry.fill",
+			"stylers": [{
+				"color": "#ffffff"
+			}]
+		}, {
+			"featureType": "landscape.man_made",
+			"elementType": "geometry.fill",
+			"stylers": [{
+				"color": "#ffffff"
+			}]
+		}, {
+			"featureType": "poi",
+			"elementType": "all",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}, {
+			"featureType": "road",
+			"elementType": "all",
+			"stylers": [{
+				"saturation": -100
+			}, {
+				"lightness": 45
+			}]
+		}, {
+			"featureType": "road",
+			"elementType": "geometry.fill",
+			"stylers": [{
+				"color": "#eeeeee"
+			}]
+		}, {
+			"featureType": "road",
+			"elementType": "labels.text.fill",
+			"stylers": [{
+				"color": "#7b7b7b"
+			}]
+		}, {
+			"featureType": "road",
+			"elementType": "labels.text.stroke",
+			"stylers": [{
+				"color": "#ffffff"
+			}]
+		}, {
+			"featureType": "road.highway",
+			"elementType": "all",
+			"stylers": [{
+				"visibility": "simplified"
+			}]
+		}, {
+			"featureType": "road.arterial",
+			"elementType": "labels.icon",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}, {
+			"featureType": "transit",
+			"elementType": "all",
+			"stylers": [{
+				"visibility": "off"
+			}]
+		}, {
+			"featureType": "water",
+			"elementType": "all",
+			"stylers": [{
+				"color": "#46bcec"
+			}, {
+				"visibility": "on"
+			}]
+		}, {
+			"featureType": "water",
+			"elementType": "geometry.fill",
+			"stylers": [{
+				"color": "#c8d7d4"
+			}]
+		}, {
+			"featureType": "water",
+			"elementType": "labels.text.fill",
+			"stylers": [{
+				"color": "#070707"
+			}]
+		}, {
+			"featureType": "water",
+			"elementType": "labels.text.stroke",
+			"stylers": [{
+				"color": "#ffffff"
+			}]
+		}]
+	});
+	var marker = new google.maps.Marker({
+		position: location,
+		map: map,
+		icon: 'blue_markerA.png'
+	});
+	marker.setMap(map);
+}
 
 /***/ })
 /******/ ]);
