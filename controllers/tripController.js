@@ -40,26 +40,18 @@ exports.resizePhoto = async (req, res, next) => {
 };
 
 exports.createTrip = async (req, res) => {
-	//console.log('raw locs', req.body.locations);
-
 	req.body.author = req.user._id;
 	var locations = req.body.locations;
 
-	if (locations.address.length > 0) {
+	if (locations.coordinates.length > 2) {
 		var locs = locations.address.map(function (address, index) {
-			console.log('coordinates', locations.coordinates[index])
 			return {
 				address: address,
 				coordinates: locations.coordinates[index]
 			};
 		})
 		req.body.locations = locs;		
-	}
-
-
-	console.log(req.body.locations)
-	
-
+	} 
 
 	const trip = await (new Trip(req.body)).save();
 	req.flash('success', `Successfully Created ${trip.name}.`);
