@@ -11,8 +11,8 @@ block content
             li.tag
               img.mySlides(src=`/uploads/${photo}`)
 
-      button.sliderButton.display-left(onclick='buttonClick(-1)') ❮
-      button.sliderButton.display-right(onclick='buttonClick(+1)') ❯
+      button.sliderButton.display-left ❮
+      button.sliderButton.display-right ❯
       h2= trip.name
       p= trip.description
 
@@ -21,26 +21,9 @@ block content
     //-   img.single__map(src=h.staticMap(trip.locations.coordinates))
     //-   p.single__location= trip.locations.address
     
-    div#map Google Maps
+    #map Google Maps
 
-    script.
-      var sliderCount = 1;
-      showImage(sliderCount);
 
-      function buttonClick(n) {
-          showImage(sliderCount += n);
-      }
-
-      function showImage(n) {
-          var i;
-          var images = document.getElementsByClassName("mySlides");
-          if (n > images.length) {sliderCount = 1} 
-          if (n < 1) {sliderCount = images.length} ;
-          for (i = 0; i < images.length; i++) {
-              images[i].style.display = "none"; 
-          }
-          images[sliderCount-1].style.display = "block"; 
-      }
 
 
 

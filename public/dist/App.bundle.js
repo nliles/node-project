@@ -74,35 +74,36 @@ var _dynamicForm = __webpack_require__(1);
 
 var _dynamicForm2 = _interopRequireDefault(_dynamicForm);
 
-var _bling = __webpack_require__(2);
-
-var _autocomplete = __webpack_require__(3);
+var _autocomplete = __webpack_require__(2);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
-var _loginModal = __webpack_require__(4);
+var _loginModal = __webpack_require__(3);
 
 var _loginModal2 = _interopRequireDefault(_loginModal);
 
-var _registerModal = __webpack_require__(5);
+var _registerModal = __webpack_require__(4);
 
 var _registerModal2 = _interopRequireDefault(_registerModal);
 
-var _imageSlider = __webpack_require__(6);
+var _imageSlider = __webpack_require__(5);
 
 var _imageSlider2 = _interopRequireDefault(_imageSlider);
 
-var _dropDown = __webpack_require__(7);
+var _dropDown = __webpack_require__(6);
 
 var _dropDown2 = _interopRequireDefault(_dropDown);
 
-var _displayMap = __webpack_require__(8);
-
-var _displayMap2 = _interopRequireDefault(_displayMap);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-(0, _autocomplete2.default)((0, _bling.$)('.address'), (0, _bling.$)('.lat'), (0, _bling.$)('.lng'));
+// import displayMap from './modules/displayMap';
+
+
+var addressInput = document.querySelector('.address');
+var latInput = document.querySelector('.lat');
+var lngInput = document.querySelector('.lng');
+
+(0, _autocomplete2.default)(addressInput, latInput, lngInput);
 
 /***/ }),
 /* 1 */
@@ -148,50 +149,19 @@ dynamicForm(10, ".container1", ".addLocationField", html1);
 
 
 Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-// based on https://gist.github.com/paulirish/12fb951a8b893a454b32
-
-var $ = document.querySelector.bind(document);
-var $$ = document.querySelectorAll.bind(document);
-
-Node.prototype.on = window.on = function (name, fn) {
-  this.addEventListener(name, fn);
-};
-
-NodeList.prototype.__proto__ = Array.prototype; // eslint-disable-line
-
-NodeList.prototype.on = NodeList.prototype.addEventListener = function (name, fn) {
-  this.forEach(function (elem) {
-    elem.on(name, fn);
-  });
-};
-
-exports.$ = $;
-exports.$$ = $$;
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 function autocomplete(input, latInput, lngInput) {
 	if (!input) return;
-
 	var dropdown = new google.maps.places.Autocomplete(input);
 
-	$(dropdown).on('place_changed', function () {
+	dropdown.addListener('place_changed', function () {
 		var place = dropdown.getPlace();
 		latInput.value = place.geometry.location.lat();
 		lngInput.value = place.geometry.location.lng();
 	});
 
-	input.on('keydown', function (e) {
+	input.addEventListener('keydown', function (e) {
 		if (e.keyCode === 13) e.preventDefault();
 	});
 }
@@ -199,7 +169,7 @@ function autocomplete(input, latInput, lngInput) {
 exports.default = autocomplete;
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -228,7 +198,7 @@ $('#dialog').dialog({
 });
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -257,31 +227,43 @@ $('#dialog2').dialog({
 });
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-// var sliderCount = 1;
-// showImage(sliderCount);
+
+// $('.display-left').on('click', function() {
+// 	buttonClick(-1)
+// })
+
+// $('.display-right').on('click', function() {
+// 	buttonClick(+1)
+// })
+
 
 // function buttonClick(n) {
-//     showImage(sliderCount += n);
+//   showImage(sliderCount += n);
 // }
 
 // function showImage(n) {
-//     var i;
-//     var images = document.getElementsByClassName("mySlides");
-//     if (n > images.length) {sliderCount = 1} 
-//     if (n < 1) {sliderCount = images.length} ;
-//     for (i = 0; i < images.length; i++) {
-//         images[i].style.display = "none"; 
-//     }
+//   var i;
+//   var images = document.getElementsByClassName("mySlides");
+//   if (n > images.length) {sliderCount = 1}; 
+//   if (n < 1) {sliderCount = images.length};
+//   for (i = 0; i < images.length; i++) {
+//       images[i].style.display = "none"; 
+//   }
 //     images[sliderCount-1].style.display = "block"; 
 // }
+// if this page has a slider:
+
+
+// var sliderCount = 1;
+// showImage(sliderCount);  
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -307,13 +289,6 @@ $('.cool > li').mouseleave(function () {
 	$('.dropdownBackground').removeClass('open');
 	$(this).removeClass('trigger-enter', 'trigger-enter-active');
 });
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
 
 /***/ })
 /******/ ]);
