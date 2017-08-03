@@ -1,6 +1,5 @@
       function initMap() {
-        // Styles a map in night mode.
-        var location = {lat: 40.674, lng: -73.945};
+        var location = {lat: 4.7110, lng: -74.0721};
         var map = new google.maps.Map(document.getElementById('map'), {
           center: location,
           zoom: 12,
@@ -181,12 +180,20 @@
     }
 ]
         });
+
+        const coords = [];
+        const m = document.querySelectorAll('.marker')
+        m.forEach(m => coords.push(m.innerHTML));
+    
+        var marker, i;
+        for (i=0; i< coords.length; i++) {
 		var marker = new google.maps.Marker({
-		    position: location,
+		    position: new google.maps.LatLng(coords[i].split(",")[1], coords[i].split(",")[0]),
 		    map: map,
 		});
-		 marker.setMap(map);
+		 marker.setMap(map);  
+        }
 
       }
 
-window.onload = initMap;
+// window.onload = initMap;

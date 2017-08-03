@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,11 +70,38 @@
 "use strict";
 
 
-var _dynamicForm = __webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+function autocomplete(input, latInput, lngInput) {
+	if (!input) return;
+	var dropdown = new google.maps.places.Autocomplete(input);
+
+	dropdown.addListener('place_changed', function () {
+		var place = dropdown.getPlace();
+		latInput.value = place.geometry.location.lat();
+		lngInput.value = place.geometry.location.lng();
+	});
+
+	input.addEventListener('keydown', function (e) {
+		if (e.keyCode === 13) e.preventDefault();
+	});
+}
+
+exports.default = autocomplete;
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _dynamicForm = __webpack_require__(2);
 
 var _dynamicForm2 = _interopRequireDefault(_dynamicForm);
 
-var _autocomplete = __webpack_require__(2);
+var _autocomplete = __webpack_require__(0);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
@@ -103,13 +130,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (0, _autocomplete2.default)($('.address')[0], $('.lat')[0], $('.lng')[0]);
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _autocomplete = __webpack_require__(2);
+var _autocomplete = __webpack_require__(0);
 
 var _autocomplete2 = _interopRequireDefault(_autocomplete);
 
@@ -144,33 +171,6 @@ dynamicForm(5, ".container2", ".addPhotoField", html);
 
 var html1 = '<div><label for="address">Address</label><input type="text" class="address2" name="locations[address]"/><label for="lng">Address lng</label><input type="text" class="lng2" name="locations[coordinates][0]" required/><label for="lat">Address Lat</label><input type="text" class="lat2" name="locations[coordinates][1]" required />';
 dynamicForm(10, ".container1", ".addLocationField", html1);
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-function autocomplete(input, latInput, lngInput) {
-	if (!input) return;
-	var dropdown = new google.maps.places.Autocomplete(input);
-
-	dropdown.addListener('place_changed', function () {
-		var place = dropdown.getPlace();
-		latInput.value = place.geometry.location.lat();
-		lngInput.value = place.geometry.location.lng();
-	});
-
-	input.addEventListener('keydown', function (e) {
-		if (e.keyCode === 13) e.preventDefault();
-	});
-}
-
-exports.default = autocomplete;
 
 /***/ }),
 /* 3 */
@@ -305,8 +305,7 @@ $('.cool > li').mouseleave(function () {
 
 
 function initMap() {
-    // Styles a map in night mode.
-    var location = { lat: 40.674, lng: -73.945 };
+    var location = { lat: 4.7110, lng: -74.0721 };
     var map = new google.maps.Map(document.getElementById('map'), {
         center: location,
         zoom: 12,
@@ -427,14 +426,24 @@ function initMap() {
             }]
         }]
     });
-    var marker = new google.maps.Marker({
-        position: location,
-        map: map
+
+    var coords = [];
+    var m = document.querySelectorAll('.marker');
+    m.forEach(function (m) {
+        return coords.push(m.innerHTML);
     });
-    marker.setMap(map);
+
+    var marker, i;
+    for (i = 0; i < coords.length; i++) {
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(coords[i].split(",")[1], coords[i].split(",")[0]),
+            map: map
+        });
+        marker.setMap(map);
+    }
 }
 
-window.onload = initMap;
+// window.onload = initMap;
 
 /***/ })
 /******/ ]);
