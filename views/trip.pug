@@ -19,12 +19,12 @@ block content
       if trip.locations
         ul
           each location in trip.locations
-            li.marker= location.coordinates
             li.mark= `${location.address}`
                    
-      #map 
+      #map
 
-
+block header-scripts
+  script var trip = '!{JSON.stringify(trip)}';
 
 
 

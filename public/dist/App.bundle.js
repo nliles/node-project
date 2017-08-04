@@ -304,8 +304,10 @@ $('.cool > li').mouseleave(function () {
 "use strict";
 
 
-function initMap() {
-    var location = { lat: 4.7110, lng: -74.0721 };
+var map;
+var mapConfig;
+function initMap(coords) {
+    var location = { lat: coords[0].coordinates[1], lng: coords[0].coordinates[0] };
     var map = new google.maps.Map(document.getElementById('map'), {
         center: location,
         zoom: 12,
@@ -427,23 +429,21 @@ function initMap() {
         }]
     });
 
-    var coords = [];
-    var m = document.querySelectorAll('.marker');
-    m.forEach(function (m) {
-        return coords.push(m.innerHTML);
-    });
-
-    var marker, i;
+    var i, marker;
     for (i = 0; i < coords.length; i++) {
-        var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(coords[i].split(",")[1], coords[i].split(",")[0]),
+        console.log(coords[0].coordinates[1]);
+        console.log(coords[0].coordinates[0]);
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng(coords[i].coordinates[1], coords[i].coordinates[0]),
             map: map
         });
         marker.setMap(map);
     }
 }
 
-// window.onload = initMap;
+var jsTrip = JSON.parse(trip);
+
+document.getElementById("map") ? window.onload = initMap(jsTrip.locations) : "";
 
 /***/ })
 /******/ ]);
