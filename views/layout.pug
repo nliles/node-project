@@ -9,6 +9,8 @@ html
 
     include mixins/_loginForm
     include mixins/_registerForm
+    
+    block header-scripts
 
     block header
       header.top
@@ -54,13 +56,15 @@ html
     .content
     block content
 
-
+    
     block scripts
       script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyD2PXpY9m7cUzNbyLzenp9w2Q436QKvYzI&libraries=places')
       script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js") 
       script(src='../bower_components/jquery/dist/jquery.min.js')
       script(src='../bower_components/jquery-ui/jquery-ui.min.js')
       script(src="/dist/App.bundle.js")
+
+    //- block foooter-scripts    
  
 
 

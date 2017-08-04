@@ -39,16 +39,16 @@ exports.resizePhoto = async (req, res, next) => {
 	next();
 };
 
-
 exports.createTrip = async (req, res) => {
 	req.body.author = req.user._id;
 	var locations = req.body.locations;
 	var coordinates = req.body.locations.coordinates
 
 	newArray = [];
-	for (i=0; i < coordinates[0].length; i++) {
-	  newArray.push([coordinates[0][i], coordinates[1][i]]);
+	for (i=0; i < coordinates[0].length; i++) { 
+		newArray.push([coordinates[0][i], coordinates[1][i]]);
 	}
+
 		var locs = locations.address.map(function (address, index) {
 			return {
 				address: address,
