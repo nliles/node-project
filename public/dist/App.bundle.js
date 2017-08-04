@@ -310,7 +310,7 @@ function initMap(coords) {
     var location = { lat: coords[0].coordinates[1], lng: coords[0].coordinates[0] };
     var map = new google.maps.Map(document.getElementById('map'), {
         center: location,
-        zoom: 12,
+        zoom: 16,
         styles: [{
             "featureType": "water",
             "elementType": "geometry",
@@ -428,11 +428,10 @@ function initMap(coords) {
             }]
         }]
     });
+    map.setOptions({ minZoom: 3, maxZoom: 12 });
 
     var i, marker;
     for (i = 0; i < coords.length; i++) {
-        console.log(coords[0].coordinates[1]);
-        console.log(coords[0].coordinates[0]);
         marker = new google.maps.Marker({
             position: new google.maps.LatLng(coords[i].coordinates[1], coords[i].coordinates[0]),
             map: map
@@ -441,9 +440,12 @@ function initMap(coords) {
     }
 }
 
-var jsTrip = JSON.parse(trip);
+function getTripData() {
+    var jsTrip = JSON.parse(trip);
+    return jsTrip.locations;
+}
 
-document.getElementById("map") ? window.onload = initMap(jsTrip.locations) : "";
+document.getElementById("map") ? window.onload = initMap(getTripData()) : "";
 
 /***/ })
 /******/ ]);
